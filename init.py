@@ -2,13 +2,13 @@ import nltk
 import sys
 
 grammar = nltk.CFG.fromstring("""
-    S -> NP VP
-    S -> N VP Conj NP VP
-    A -> Adj | Adv
-    AP -> A | A AP 
-    NP -> N | Det NP | AP NP | N PP | N PP Adv
-    PP -> P NP
-    VP -> V | V NP | V NP PP | V PP | Adv VP
+    S -> NP VP |  NP VP Conj NP VP | NP VP Conj VP
+NP -> N | Adj NP | Det NP | NP PP 
+AdjP -> Adj Conj Adj NP | Adj NP
+PP -> P NP
+AdvP -> VP Adv | Adv VP | V NP Adv
+VP -> V | V NP | AdvP NP | V PP | AdvP | VP PP
+    
 
     Adj -> "country" | "dreadful" | "enigmatical" | "little" | "moist" | "red"
     Adv -> "down" | "here" | "never"
